@@ -1,8 +1,19 @@
 # Devlog
 
-## feat: add elec-price-hunter component lookup skill
+## chore: trim test fixtures and add MIT license for public release
 
 `(pending)` | 2026-10-19
+
+- **Changes**: Fixtures reduced to the fields the parsers read (lceda 56 KB → 1.2 KB, lcsc 9 KB → 5.4 KB); add `LICENSE` (MIT).
+- **Reason**: Publish as a public GitHub repo; user asked to review and remove sensitive local info first.
+- **User feedback**: "repo帮我publish到github，public开放，先审查并处理敏感本地信息。"
+- **Process**: Scanned working tree and full history for local paths (`/Users/`, temp dirs), sibling repo names, keys/tokens/passwords, emails. Only hits: env var names and the code that reads them; no values. Raw lceda fixture carried EDA device metadata (library owner uuid, username "LCSC", avatar URL) — public LCSC account, not personal, but irrelevant, so stripped. Commit author is the user's public GitHub email.
+- **Result**: unittest OK after trimming.
+- **Notes**: The untrimmed fixtures remain in commit 3502aaa; they contain only public catalogue data.
+
+## feat: add elec-price-hunter component lookup skill
+
+`3502aaa` | 2026-10-19
 
 - **Changes**: New repo. `SKILL.md` + stdlib CLI `eph.py` (`search`/`part`/`datasheet`/`check`); adapters lceda (立创 CNY), lcsc (USD, params, datasheet, alternates), jlc (jlcsearch, by C code), mouser/digikey (own keys, keyless fallback via pcbparts.dev); 16 offline tests with recorded payloads; AGENTS.md (upstream 78c3a94), Architecture.md, README.
 - **Reason**: No existing skill/MCP gives 立创 CNY prices; product scope is reliable search + price + datasheet + params, China and overseas, lceda/LCSC first.
